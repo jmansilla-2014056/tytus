@@ -23,9 +23,9 @@ for i in range(100):
     pila.append(i)
 
 def ejecutar():
-    global cont
-    global ts
-    NombreDB = ts.nameDB
+\tglobal cont
+\tglobal ts
+\tNombreDB = ts.nameDB
 	\n''')
 
 
@@ -51,6 +51,7 @@ for fa in g.funciones:
    a.write(fa)
 
 a.write('''ejecutar()''')
+
 a.close()
 
 

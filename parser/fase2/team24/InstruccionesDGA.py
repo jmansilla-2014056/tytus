@@ -2024,7 +2024,22 @@ class IndexCreate(instruccion):
         self.createind2 = createind2
 
     def traducir(self):
-        return ''
+        traduccion = '\t'
+        traduccion += 'sql.execute("CREATE UNIQUE INDEX ' + self.id1 + ' ON ' + self.id2 + '('
+
+        if isinstance(self.createind2, createind3):
+            temp = self.createind2.listacolind
+            for x in temp:
+                #falta ver si puede ser una llamada
+                if isinstance(x, str):
+                    traduccion += ' '+ x + ','
+                if isinstance(x, llamadaF):
+                    traduccion += x.id
+
+        traduccion = traduccion.replace(',)',')')
+        traduccion += ');")'
+        traduccion += '\n'
+        return traduccion.replace(',)',')')
 
     def ejecutar(self):
         global resultadotxt
@@ -2112,7 +2127,10 @@ class IndexDrop(instruccion):
         self.orden = orden
 
     def traducir(self):
-        return ''
+        traduccion = ''
+        for x in self.listaindices:
+            traduccion += '\tsql.execute("DROP INDEX ' + x + ';")'+ '\n'
+        return traduccion
 
     def ejecutar(self):
         global resultadotxt

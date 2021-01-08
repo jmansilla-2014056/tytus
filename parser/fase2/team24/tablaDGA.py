@@ -212,7 +212,7 @@ class Tabla() :
 
         idf = -1
 
-        for simbolo in reversed(self.simbolos.items()):
+        for simbolo in self.simbolos.items():
             if simbolo[1].tipo == TIPO.FUNCTION:
                 return simbolo[1].id
 
